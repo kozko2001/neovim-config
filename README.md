@@ -1,6 +1,6 @@
 # neovim-config
 
-Followed the Youtube series of [Zneovim from scratch](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIz). Here are some notes I took :)
+Followed the Youtube series of [neovim from scratch](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIz). Here are some notes I took :)
 
 To install just clone the repository into `~/.config/nvim/`
 
@@ -67,3 +67,6 @@ Telescope is a plugin that permits you to fuzzy search like...
 TreeSitter allow you to load better syntax parsers for files. For example vim doesn't parse correctly JSX etc...
 
 
+#### Comments
+
+- `M+/` => Comment lines in normal mode and in visual mode

@@ -2,6 +2,16 @@ local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
+local mapx = require('mapx').setup {
+  global = true,
+  whichkey = true,
+  enableCountArg = false,
+  debug = vim.g.mapxDebug or false,
+}
+
+local silent = mapx.silent
+local expr = mapx.expr
+
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -50,6 +60,8 @@ keymap("v", "p", '"_dP', opts)
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes'))<cr>", opts)
 keymap("n", "<leader>s", "<cmd>Telescope live_grep<cr>", opts)
 
+map      ([[<M-/>]], [[gcc<Esc>]], silent) -- Toggle line comment
+
 ---- Visual Block --
 ---- Move text up and down
 --keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -60,6 +72,6 @@ keymap("n", "<leader>s", "<cmd>Telescope live_grep<cr>", opts)
 ---- Terminal --
 ---- Better terminal navigation
 --keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
---keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+ --keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 --keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 --keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)

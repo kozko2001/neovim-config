@@ -77,6 +77,13 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
 
+  -- Comments
+  use "numToStr/Comment.nvim" -- Easily comment stuff
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+  -- Better mapping
+  use 'b0o/mapx.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
