@@ -70,3 +70,17 @@ TreeSitter allow you to load better syntax parsers for files. For example vim do
 #### Comments
 
 - `M+/` => Comment lines in normal mode and in visual mode
+
+#### Tree
+
+- `Space-e` -> Shows the tree on the side
+
+With the focus of the tree...
+
+- `d` -> delete file
+- `r` -> rename file
+- `a` -> create file
+
+#### Magit
+
+- `Space-g` -> Magit
