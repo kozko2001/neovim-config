@@ -1,6 +1,6 @@
 # neovim-config
 
-Followed the Youtube series of [https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ](neovim from scratch). Here are some notes I took :)
+Followed the Youtube series of [Zneovim from scratch](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIz). Here are some notes I took :)
 
 To install just clone the repository into `~/.config/nvim/`
 
@@ -52,3 +52,18 @@ Keybindings
 - `gr` -> go to references
 - `[d` -> go to prev diagnostic
 - `]d` -> go to next diagnostic
+
+#### Telescope
+
+Telescope is a plugin that permits you to fuzzy search like...
+
+- `Space-f` => Find files
+- `Space-t` Search in files
+- Search branches etc....
+
+
+#### TreeSitter
+
+TreeSitter allow you to load better syntax parsers for files. For example vim doesn't parse correctly JSX etc...
+
+

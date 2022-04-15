@@ -6,9 +6,9 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -46,6 +46,9 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
+
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>s", "<cmd>Telescope live_grep<cr>", opts)
 
 ---- Visual Block --
 ---- Move text up and down
