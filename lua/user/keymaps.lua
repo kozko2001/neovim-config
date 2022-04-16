@@ -2,6 +2,13 @@ local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
+
+local status_ok, mapx = pcall(require, "mapx")
+if not status_ok then
+  vim.notify("mapx was not loaded ")
+  return
+end
+
 local mapx = require('mapx').setup {
   global = true,
   whichkey = true,

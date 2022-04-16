@@ -4,6 +4,9 @@ Followed the Youtube series of [neovim from scratch](https://www.youtube.com/pla
 
 To install just clone the repository into `~/.config/nvim/`
 
+During first execution, is normal that something is missing... 
+
+Just execute `:PackerInstall`
 Execute `:LSPInstall` to install LspClients
 
 ### notes
