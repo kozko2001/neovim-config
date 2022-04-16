@@ -35,8 +35,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
-
 
 -- Resize with arrows
 keymap("n", "<C-A-j>", ":resize +2<CR>", opts)
@@ -58,12 +56,8 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes'))<cr>", opts)
-keymap("n", "<leader>s", "<cmd>Telescope live_grep<cr>", opts)
-
 map      ([[<M-/>]], [[gcc<Esc>]], silent) -- Toggle line comment
 
-keymap("n", "<leader>g", "<cmd>Neogit<cr>", opts)
 ---- Visual Block --
 ---- Move text up and down
 --keymap("x", "J", ":move '>+1<CR>gv-gv", opts)

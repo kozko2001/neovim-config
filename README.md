@@ -84,3 +84,12 @@ With the focus of the tree...
 #### Magit
 
 - `Space-g` -> Magit
+
+
+#### Toggle term
+
+Terminal that you can use inside vim
+
+- `C-\` - Open / close
+- `jk` - Inside the terminal to go to normal mode
+
