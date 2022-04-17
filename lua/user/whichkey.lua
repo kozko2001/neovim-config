@@ -136,7 +136,28 @@ local mappings = {
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
+   d = {
+     name = "Debug",
+     b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Toggle Breakpoint"},
+     i = { "<cmd>lua require('dap').step_into()<CR>", "Step into"},
+     o = { "<cmd>lua require('dap').step_over()<CR>", "Step over"},
+     t = { "<cmd>lua require('dap').terminate()<CR>", "Terminate"},
+     f = { "<cmd>Telescope dap frames<CR>", "Frames"},
+     s = { "<cmd>Telescope dap list_breakpoints<CR>", "Show breakpoints"},
+     c = { "<cmd>lua require('dap').continue()<CR>", "Continue / Start debug"},
+     u = { "<cmd>lua require('dapui').toogle()<CR>", "Toggle Dap-UI"},
+     p = { "<cmd>lua require('dap').step_out()<CR>", "Step out"},
+     r = { "<cmd>lua require('dap').repl.open()<CR>", "Repl"},
+     e = { "<cmd>lua require('dapui').eval()<CR>", "Eval selected text"},
+     k = { "<cmd>lua require('dapui').float_element()<CR>", "Hover info"},
+   },
+  ["<space>"] = {
+     name = "Custom",
+     p = { "<cmd>Glow<cr>", "Preview Markdown"},
+  }
 }
+
+
 
 which_key.setup(setup)
 which_key.register(mappings, opts)

@@ -40,7 +40,6 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
@@ -93,6 +92,16 @@ return packer.startup(function(use)
 
   -- Terminal
   use "akinsho/toggleterm.nvim"
+
+  -- Markdown preview
+  use {"ellisonleao/glow.nvim", branch = 'main'}
+
+  -- Debugging - Dap
+  use 'nvim-telescope/telescope-dap.nvim'
+ 	use 'mfussenegger/nvim-dap'
+  use 'theHamsta/nvim-dap-virtual-text'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

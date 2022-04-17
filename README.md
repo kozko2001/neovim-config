@@ -60,7 +60,7 @@ Keybindings
 
 Telescope is a plugin that permits you to fuzzy search like...
 
-- `Space-f` => Find files
+- `Space-f` -> Find files
 - `Space-t` Search in files
 - Search branches etc....
 
@@ -96,3 +96,25 @@ Terminal that you can use inside vim
 - `C-\` - Open / close
 - `jk` - Inside the terminal to go to normal mode
 
+#### Markdown preview
+
+you need to install glow from https://github.com/charmbracelet/glow
+
+- `Space-Space-p` -> Preview markdown
+
+
+#### Debugging
+
+For debugging we use the DAP protocol?, which allow us to debug almost anything that vscode can use...
+
+It's a bit cucumbersome to setup... let's see if we are up for the challenge...
+
+You need to configure each launch of the debugger as you would do in the vscode, see the dap.lua file for an example
+
+Keymaps:
+- `SPACE d c` -> Launch debugger (or if you are already debugging... continue
+- `SPACE d b` -> add breakpoint
+- `SPACE d i/o/p` -> step into/over/out (parent)
+- `SPACE d t` -> terminate debugging session
+- `SPACE d r` -> Open repl => You can change the value of variables, evaluate etc..
+- `SPACE d s` -> show breakpoints => breakpoints are not saved between sessions :(
