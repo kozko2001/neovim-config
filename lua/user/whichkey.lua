@@ -1,4 +1,5 @@
  local status_ok, which_key= pcall(require, "which-key")
+
 if not status_ok then
   vim.notify("whichkey was not loaded ")
   return
@@ -153,7 +154,8 @@ local mappings = {
    },
   ["<space>"] = {
      name = "Custom",
-     p = { "<cmd>Glow<cr>", "Preview Markdown"},
+     m = { "<cmd>Glow<cr>", "Preview Markdown"},
+     p = { "<cmd>Telescope projects<cr>", "Show projects"},
   }
 }
 

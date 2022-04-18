@@ -12,3 +12,5 @@ require "user.nvim-tree"
 require "user.magit"
 require "user.toggleterm"
 require "user.dap"
+require "user.alpha"
+ 
