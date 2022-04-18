@@ -3,8 +3,13 @@ local M = {}
 -- https://neovim.discourse.group/t/reload-init-lua-and-all-require-d-scripts/971/18
 
 function M.ReloadConfig()
-    require('plenary.reload').reload_module('user')
-    vim.cmd [[luafile $MYVIMRC]]
+  local filename = vim.fn.expand("<afile>")
+  if string.find(filename, "plugin") then
+    vim.notify("plugin file should not be reloaded...")
+    return
+  end
+  require('plenary.reload').reload_module('user')
+  vim.cmd [[luafile $MYVIMRC]]
 end
 
 

@@ -156,6 +156,13 @@ local mappings = {
      name = "Custom",
      m = { "<cmd>Glow<cr>", "Preview Markdown"},
      p = { "<cmd>Telescope projects<cr>", "Show projects"},
+  },
+  t = {
+     name = "Test",
+     t = { "<cmd>UltestNearest<CR>", "Test nearest" },
+     f = { "<cmd>Ultest<CR>", "Test file" },
+     s = { "<cmd>UltestSummary<CR>", "toggle test summary" },
+     a = { "<cmd>UltestAttach<CR>", "attach to last execution test" },
   }
 }
 

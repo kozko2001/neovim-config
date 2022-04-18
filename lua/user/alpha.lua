@@ -33,5 +33,10 @@ vim.cmd[[autocmd User AlphaReady echo 'ready']]
 alpha.setup(dashboard.config)
 
 
-vim.api.nvim_command('Alpha')
+local alpha_group = vim.api.nvim_create_augroup("AlphaGroupOnEnter", { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  callback = function ()  vim.api.nvim_command('Alpha') end,
+  group = alpha_group,
+})
 

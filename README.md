@@ -118,3 +118,9 @@ Keymaps:
 - `SPACE d t` -> terminate debugging session
 - `SPACE d r` -> Open repl => You can change the value of variables, evaluate etc..
 - `SPACE d s` -> show breakpoints => breakpoints are not saved between sessions :(
+
+#### Test
+
+- `SPACE t t` -> executes nearest test
+- `SPACE t f` => Test file 
+- `SPACE t s` => show summary of tests

@@ -110,7 +110,13 @@ return packer.startup(function(use)
     end
   }
 
+  -- Initial screen
   use { "goolord/alpha-nvim" }
+
+  -- Testing :)
+  use { "rcarriga/vim-ultest", requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
+
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
