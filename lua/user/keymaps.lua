@@ -10,7 +10,7 @@ if not status_ok then
 end
 
 local mapx = require('mapx').setup {
-  global = true,
+  global = "force",
   whichkey = true,
   enableCountArg = false,
   debug = vim.g.mapxDebug or false,
@@ -64,7 +64,6 @@ keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 map      ([[<M-/>]], [[gcc<Esc>]], silent) -- Toggle line comment
-
 
 ---- Visual Block --
 ---- Move text up and down
