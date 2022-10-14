@@ -10,7 +10,6 @@ function M.ReloadConfig()
   end
   require('plenary.reload').reload_module('user')
   vim.cmd [[luafile $MYVIMRC]]
-  vim.cmd [[PackerSync]]
 end
 
 
@@ -23,3 +22,4 @@ api.nvim_create_autocmd("BufWritePost", {
   group = reload_config,
 })
 
+return M

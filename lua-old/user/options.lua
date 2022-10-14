@@ -31,49 +31,18 @@ local options = {
   numberwidth = 2,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
-  scrolloff = 8,                           -- have 8 lines above and below
-  sidescrolloff = 8,                       -- have 8 columns surronding
+  scrolloff = 8,                           -- is one of my fav
+  sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
-  termguicolors = true
+  termguicolors = true,
 }
-
 vim.opt.shortmess:append "c"
-vim.opt.foldlevel = 5
+
 
 for k,v in pairs(options) do 
   vim.opt[k] = v
 end
 
-local opts = { noremap = true, silent = true }
-
-local status_ok, mapx = pcall(require, "mapx")
-if not status_ok then
-  vim.notify("mapx was not loaded ")
-  return
-end
-
-local silent = mapx.silent
-local expr = mapx.expr
-
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
-
-
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
-
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
--- Resize with arrows
-keymap("n", "<C-A-j>", ":resize +2<CR>", opts)
-keymap("n", "<C-A-k>", ":resize -2<CR>", opts)
-keymap("n", "<C-A-l>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-A-h>", ":vertical resize +2<CR>", opts)
-
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-
-
+vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

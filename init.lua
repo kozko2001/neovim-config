@@ -1,17 +1,28 @@
 require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.cmp"
-require "user.colorscheme"
-require "user.lsp"
-require "user.telescope"
-require "user.whichkey"
-require "user.treesitter"
-require "user.comment"
-require "user.nvim-tree"
-require "user.magit"
-require "user.toggleterm"
-require "user.dap"
-require "user.reload"
-require "user.test"
-require "user.alpha"
+require "user.packer"
+require "user.utils"
+
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "hrsh7th/nvim-cmp"
+  use 'b0o/mapx.nvim'
+
+  -- theme
+  local theme = require('user.theme')
+  theme.plugin(use)
+
+  -- auto reload on writing lua file
+  require "user.reload"
+
+  require("user.treesitter").plugin(use)
+
+  require("user.telescope").plugin(use)
+
+  require("user.lsp").plugin(use)
+
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
