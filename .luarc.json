@@ -3,6 +3,7 @@
     "Lua.diagnostics.globals": [
         "vim",
         "languages",
-        "lsp_to_install"
+        "lsp_to_install",
+        "config"
     ]
 }
