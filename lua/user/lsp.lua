@@ -115,7 +115,7 @@ function M.plugin(use)
 
 
         -- formatting
-        set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<cr>')
+        set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format({ async = true})<cr>')
         set_keymap('v', 'gf', '<cmd>lua vim.lsp.buf.range_formatting()<cr>')
 
         -- lsp workspace
@@ -153,15 +153,19 @@ function M.plugin(use)
         -- your configuration
         code_action_icon = "ﯦ"
       })
-      -- Code action
-      keymap({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>", { silent = true })
-
       -- Rename
       keymap("n", "gR", "<cmd>Lspsaga rename<CR>", { silent = true })
       keymap("n", "gpd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 
     end,
   })
+
+  vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+      vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, { buffer = args.buf, silent = true })
+    end
+  })
+
 
 end
 
