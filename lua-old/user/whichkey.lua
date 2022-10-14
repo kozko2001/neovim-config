@@ -159,10 +159,11 @@ local mappings = {
   },
   t = {
      name = "Test",
-     t = { "<cmd>UltestNearest<CR>", "Test nearest" },
-     f = { "<cmd>Ultest<CR>", "Test file" },
-     s = { "<cmd>UltestSummary<CR>", "toggle test summary" },
-     a = { "<cmd>UltestAttach<CR>", "attach to last execution test" },
+     t = { "<cmd>lua require('neotest').run.run()<CR>", "Test nearest" },
+     f = { "<cmd>lua require('neotest').run.run(vim.fn.expand())<CR>", "Test file" },
+     d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", "attach to last execution test" },
+     a = { "<cmd>lua require('neotest').run.run_last()<CR>", "attach to last execution test" },
+     s = { "<cmd>lua require('neotest').summary.toggle()<CR>", "summary" },
   }
 }
 

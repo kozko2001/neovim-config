@@ -59,9 +59,39 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
+
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use {
+    "neovim/nvim-lspconfig" ,
+    requires = {
+      "hrsh7th/cmp-nvim-lsp"
+    },
+    config = function () 
+      local on_attach = function (client, bufnr)
+      end
+      local lsp_flags = {
+        debounce_text_changes = 150,
+      }
+      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      for _, server in ipairs({
+        'pyright',
+        'tsserver',
+        'sumneko_lua',
+        'jsonls',
+        'yamlls',
+        'taplo',
+        'eslint',
+      }) do
+        settings = {}
+        require('lspconfig')[server].setup({
+          on_attach = on_attach,
+          flags = lsp_flags,
+          capabilities = capabilities,
+          settings = settings,
+        })
+      end
+    end 
+  }-- enable LSP
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -114,13 +144,77 @@ return packer.startup(function(use)
   use { "goolord/alpha-nvim" }
 
   -- Testing :)
-  use { "rcarriga/vim-ultest", requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
+  use({
+    'nvim-neotest/neotest',
+    requires = {
+      'haydenmeade/neotest-jest',
+    },
+    config = function()
+      require('neotest').setup({
+        adapters = {
+          require('neotest-jest')({
+            jestCommand = "npm test --",
+            env = { CI = true },
+            cwd = function(path)
+              return vim.fn.getcwd()
+            end,
+          }),
+        }
+      })
+    end
+  })
+
+  -- Mason (LSP)
+  use {
+    'williamboman/mason.nvim',
+    config = function()
+      require('mason').setup()
+    end,
+  }
 
 
+  use {
+    'williamboman/mason-lspconfig.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+    },
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = {
+          'tsserver',
+          'pyright',
+          'sumneko_lua',
+          'jsonls',
+          'yamlls',
+          'eslint',
+        },
+      })
+    end,
+  }
+
+  use {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    requires = {
+      'williamboman/mason.nvim',
+    },
+    config = function()
+      require('mason-tool-installer').setup({
+        ensure_installed = {
+          'prettierd',
+          'black',
+          'isort',
+          'cspell',
+          'stylua',
+          'debugpy',
+        },
+      })
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
+  require("packer").sync()
+end
 end)

@@ -1,18 +1,35 @@
+local M = {}
 
-local configs = require("nvim-treesitter.configs")
+function M.plugin(use)
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = { "tsx", "json", "yaml", "html", "javascript", "typescript", "bash", "toml", "dockerfile", "lua", "rust" },
+        indent = {
+          enable = true
+        },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<CR>",
+            node_incremental = "<CR>",
+            scope_incremental = "<TAB>",
+            node_decremental = "<S-TAB>",
+          },
+        },
+      }
+    end
+  }
 
-configs.setup {
-  ensure_installed = "all",
-  sync_install = false,
-  ignore_install = { "" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    disable = { "" }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
-  },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
-  indent = { enable = true, disable = { "yaml" } },
-}
+  -- enable folding using treesitter
+  vim.wo.foldmethod = "expr"
+  vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+end
+
+return M
