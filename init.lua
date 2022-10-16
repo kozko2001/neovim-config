@@ -25,12 +25,12 @@ return require('packer').startup(function(use)
           ["<Tab>"] = cmp.mapping(function(fallback)
             -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
             if cmp.visible() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
               fallback()
             end
           end, { "i", "s" }),
-          ["<CR>"] = cmp.mapping.confirm({select = true })
+          ["<CR>"] = cmp.mapping.confirm({ select = true })
         },
       }
     end
@@ -61,6 +61,10 @@ return require('packer').startup(function(use)
   require("user.comment").plugin(use)
 
   require("user.test").plugin(use)
+
+  require("user.project").plugin(use)
+
+  require("user.git").plugin(use)
 
   -- Put this at the end after all plugins
   if packer_bootstrap then

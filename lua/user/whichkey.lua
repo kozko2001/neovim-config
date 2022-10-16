@@ -15,7 +15,9 @@ function M.plugin(use)
           b = {
             name = "+buffer",
           },
-
+          h = {
+            name = "+git",
+          }
         }
       })
 

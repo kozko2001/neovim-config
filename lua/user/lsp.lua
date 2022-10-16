@@ -101,25 +101,28 @@ function M.plugin(use)
           }, _opts or {}))
         end
 
-        set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', {desc = 'go to definition'})
-        set_keymap('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>', {desc = 'go to implementation'})
-        set_keymap('n', 'gt', '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', {desc = 'go to type definition'})
-        set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>', {desc = 'show refences'})
+        set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', { desc = 'go to definition' })
+        set_keymap('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
+          { desc = 'go to implementation' })
+        set_keymap('n', 'gt', '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
+          { desc = 'go to type definition' })
+        set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>', { desc = 'show refences' })
 
         -- diagnostics
-        set_keymap('n', 'ge[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {desc = 'go to prev error'})
-        set_keymap('n', 'ge]', '<cmd>lua vim.diagnostic.goto_next()<cr>', { desc = 'go to next error'})
-        set_keymap('n', 'gee', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>', {desc= 'show error in cursor'})
-        set_keymap('n', '<leader>ef', '<cmd>Telescope diagnostics bufnr=0<cr>', {desc = 'errors in file'})
+        set_keymap('n', 'ge[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', { desc = 'go to prev error' })
+        set_keymap('n', 'ge]', '<cmd>lua vim.diagnostic.goto_next()<cr>', { desc = 'go to next error' })
+        set_keymap('n', 'gee', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>',
+          { desc = 'show error in cursor' })
+        set_keymap('n', '<leader>ef', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = 'errors in file' })
 
 
 
         -- formatting
-        set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format({ async = true})<cr>', {desc = 'format file'})
-        set_keymap('v', 'gf', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {desc = 'format selected lines'})
+        set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format({ async = true})<cr>', { desc = 'format file' })
+        set_keymap('v', 'gf', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', { desc = 'format selected lines' })
 
         -- lsp workspace
-        set_keymap('n', '<leader>ew', '<cmd>Telescope diagnostics<cr>', {desc = 'workspace diagnostic'})
+        set_keymap('n', '<leader>ew', '<cmd>Telescope diagnostics<cr>', { desc = 'workspace diagnostic' })
 
         -- setup lsp_signature
         require "lsp_signature".on_attach({}, bufnr)
@@ -155,14 +158,15 @@ function M.plugin(use)
       })
       -- Rename
       keymap("n", "gR", "<cmd>Lspsaga rename<CR>", { silent = true, desc = 'rename' })
-      keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", { silent = true, desc = 'open definition in popup'})
+      keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", { silent = true, desc = 'open definition in popup' })
 
     end,
   })
 
   vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
-      vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, { buffer = args.buf, silent = true, desc = "Code action"})
+      vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action,
+        { buffer = args.buf, silent = true, desc = "Code action" })
     end
   })
 
