@@ -1,12 +1,18 @@
 local M = {}
 
+local utils = require('user.utils')
+
 function config()
   local map = vim.api.nvim_set_keymap
+
   local opts = { noremap = true, silent = true }
+  local genOpsWithDescription = function(desc)
+    return utils.merge(opts, { desc = desc })
+  end
 
   -- Move to previous/next
-  map('n', '<leader>bn', '<Cmd>BufferPrevious<CR>', opts)
-  map('n', '<leader>bp', '<Cmd>BufferNext<CR>', opts)
+  map('n', '<leader>bn', '<Cmd>BufferPrevious<CR>', genOpsWithDescription('previous buffer'))
+  map('n', '<leader>bp', '<Cmd>BufferNext<CR>', genOpsWithDescription('next buffer'))
   -- Goto buffer in position...
   map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
   map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
@@ -19,9 +25,9 @@ function config()
   map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
   map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
   -- Pin/unpin buffer
-  map('n', '<leader>bp', '<Cmd>BufferPin<CR>', opts)
+  map('n', '<leader>bp', '<Cmd>BufferPin<CR>', genOpsWithDescription('pin tab'))
   -- Close buffer
-  map('n', '<leader>bc', '<Cmd>BufferClose<CR>', opts)
+  map('n', '<leader>bc', '<Cmd>BufferClose<CR>', genOpsWithDescription('close buffer'))
   -- Wipeout buffer
   --                 :BufferWipeout
   -- Close commands

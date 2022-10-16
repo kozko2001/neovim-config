@@ -3,6 +3,7 @@ local M = {}
 
 local utils = require('user.utils')
 
+
 local default_lsp_to_install = {
   'pyright',
   'jsonls',
@@ -94,32 +95,31 @@ function M.plugin(use)
       end
 
       local on_attach = function(_, bufnr)
-        local function set_keymap(mode, lhs, rhs)
-          map(mode, lhs, rhs, {
+        local function set_keymap(mode, lhs, rhs, _opts)
+          map(mode, lhs, rhs, merge({
             buffer = bufnr,
-          })
+          }, _opts or {}))
         end
 
-        set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
-        set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-        set_keymap('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>')
-        set_keymap('n', 'gt', '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>')
-        set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
+        set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', {desc = 'go to definition'})
+        set_keymap('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>', {desc = 'go to implementation'})
+        set_keymap('n', 'gt', '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', {desc = 'go to type definition'})
+        set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>', {desc = 'show refences'})
 
         -- diagnostics
-        set_keymap('n', 'ge[', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-        set_keymap('n', 'ge]', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-        set_keymap('n', 'gee', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>')
-        set_keymap('n', '<leader>ge', '<cmd>Telescope diagnostics bufnr=0<cr>')
+        set_keymap('n', 'ge[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {desc = 'go to prev error'})
+        set_keymap('n', 'ge]', '<cmd>lua vim.diagnostic.goto_next()<cr>', { desc = 'go to next error'})
+        set_keymap('n', 'gee', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>', {desc= 'show error in cursor'})
+        set_keymap('n', '<leader>ef', '<cmd>Telescope diagnostics bufnr=0<cr>', {desc = 'errors in file'})
 
 
 
         -- formatting
-        set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format({ async = true})<cr>')
-        set_keymap('v', 'gf', '<cmd>lua vim.lsp.buf.range_formatting()<cr>')
+        set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format({ async = true})<cr>', {desc = 'format file'})
+        set_keymap('v', 'gf', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {desc = 'format selected lines'})
 
         -- lsp workspace
-        set_keymap('n', '<leader>ew', '<cmd>Telescope diagnostics<cr>')
+        set_keymap('n', '<leader>ew', '<cmd>Telescope diagnostics<cr>', {desc = 'workspace diagnostic'})
 
         -- setup lsp_signature
         require "lsp_signature".on_attach({}, bufnr)
@@ -128,7 +128,7 @@ function M.plugin(use)
       local lsp_flags = {
         debounce_text_changes = 150,
       }
-      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local default_settings = {}
 
       for _, language in pairs(languages) do
@@ -154,15 +154,15 @@ function M.plugin(use)
         code_action_icon = "ﯦ"
       })
       -- Rename
-      keymap("n", "gR", "<cmd>Lspsaga rename<CR>", { silent = true })
-      keymap("n", "gpd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+      keymap("n", "gR", "<cmd>Lspsaga rename<CR>", { silent = true, desc = 'rename' })
+      keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", { silent = true, desc = 'open definition in popup'})
 
     end,
   })
 
   vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
-      vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, { buffer = args.buf, silent = true })
+      vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, { buffer = args.buf, silent = true, desc = "Code action"})
     end
   })
 

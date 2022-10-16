@@ -2,11 +2,11 @@ local M = {}
 
 function M.plugin(use)
   use {
-    'folke/tokyonight.nvim',
+    "folke/neodev.nvim",
     config = function ()
-      vim.cmd[[colorscheme tokyonight-night]]
+      require('neodev').setup({})
     end
   }
 end
 
-return M
+return M;

@@ -4,6 +4,8 @@
         "vim",
         "languages",
         "lsp_to_install",
-        "config"
+        "config",
+        "configure_jest",
+        "configure_node"
     ]
 }
