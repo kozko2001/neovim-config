@@ -8,7 +8,7 @@ function configure_jest()
       print("executing jestCommand")
       print(a)
 
-      local x=  custom_jest_command or jest_command
+      local x = custom_jest_command or jest_command
       print(x)
       return x
     end,
@@ -20,6 +20,14 @@ function configure_jest()
   })
 end
 
+function configure_php()
+  return require('neotest-phpunit')({
+    phpunit_cmd = function() 
+      return "vendor/bin/simple-phpunit"
+    end })
+end
+
+
 function M.plugin(use)
   use {
     "nvim-neotest/neotest",
@@ -27,11 +35,13 @@ function M.plugin(use)
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       'haydenmeade/neotest-jest',
+      'olimorris/neotest-phpunit',
     },
     config = function()
       require("neotest").setup({
         adapters = {
-          configure_jest()
+          configure_jest(),
+          configure_php(),
         }
       })
 

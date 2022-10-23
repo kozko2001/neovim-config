@@ -6,7 +6,7 @@ function M.plugin(use)
     run = ":TSUpdate",
     config = function()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "tsx", "json", "yaml", "html", "javascript", "typescript", "bash", "toml", "dockerfile", "lua", "rust" },
+        ensure_installed = { "tsx", "json", "yaml", "html", "javascript", "typescript", "bash", "toml", "dockerfile", "lua", "rust", "php" },
         indent = {
           enable = true
         },
