@@ -5,36 +5,36 @@ require "user.utils"
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use {
-    "hrsh7th/nvim-cmp",
-    requires = { { "L3MON4D3/LuaSnip" } },
-    config = function()
-      local cmp = require 'cmp'
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            require 'luasnip'.lsp_expand(args.body)
-          end
-        },
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'path' },
-          { name = 'buffer' },
-        },
-        mapping = {
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-            if cmp.visible() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<CR>"] = cmp.mapping.confirm({ select = true })
-        },
-      }
-    end
-  }
+  -- use {
+  --   "hrsh7th/nvim-cmp",
+  --   requires = { { "L3MON4D3/LuaSnip" } },
+  --   config = function()
+  --     local cmp = require 'cmp'
+  --     cmp.setup {
+  --       snippet = {
+  --         expand = function(args)
+  --           require 'luasnip'.lsp_expand(args.body)
+  --         end
+  --       },
+  --       sources = {
+  --         { name = 'nvim_lsp' },
+  --         { name = 'path' },
+  --         { name = 'buffer' },
+  --       },
+  --       mapping = {
+  --         ["<Tab>"] = cmp.mapping(function(fallback)
+  --           -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+  --           if cmp.visible() then
+  --             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+  --           else
+  --             fallback()
+  --           end
+  --         end, { "i", "s" }),
+  --         ["<CR>"] = cmp.mapping.confirm({ select = true })
+  --       },
+  --     }
+  --   end
+  -- }
   use 'b0o/mapx.nvim'
   use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup({

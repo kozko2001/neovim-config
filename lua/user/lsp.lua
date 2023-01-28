@@ -70,17 +70,15 @@ end
 function M.plugin(use)
 
   install_lsp(use)
-
   -- LSP
   use {
     "neovim/nvim-lspconfig",
     requires = {
-      "hrsh7th/cmp-nvim-lsp",
       "ray-x/lsp_signature.nvim"
     },
     config = function()
       local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+      vim.keymap.set('n', '<space>ee', vim.diagnostic.open_float, opts)
 
       local function merge(...)
         return vim.tbl_deep_extend('force', ...)
@@ -100,22 +98,20 @@ function M.plugin(use)
             buffer = bufnr,
           }, _opts or {}))
         end
-
+          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', { desc = 'go to definition' })
         set_keymap('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
           { desc = 'go to implementation' })
         set_keymap('n', 'gt', '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
           { desc = 'go to type definition' })
         set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>', { desc = 'show refences' })
-
+        set_keymap('n', 'K', vim.lsp.buf.hover, bufopts)
         -- diagnostics
         set_keymap('n', 'ge[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', { desc = 'go to prev error' })
         set_keymap('n', 'ge]', '<cmd>lua vim.diagnostic.goto_next()<cr>', { desc = 'go to next error' })
         set_keymap('n', 'gee', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line", })<cr>',
           { desc = 'show error in cursor' })
         set_keymap('n', '<leader>ef', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = 'errors in file' })
-
-
 
         -- formatting
         set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format({ async = true})<cr>', { desc = 'format file' })
@@ -131,14 +127,14 @@ function M.plugin(use)
       local lsp_flags = {
         debounce_text_changes = 150,
       }
-      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local default_settings = {}
 
       for _, language in pairs(languages) do
         require('lspconfig')[language.lsp.mason].setup({
           on_attach = on_attach,
           flags = lsp_flags,
-          capabilities = capabilities,
+          -- capabilities = capabilities,
           settings = language.lsp.settings or default_settings,
         })
       end
