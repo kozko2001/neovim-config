@@ -7,6 +7,7 @@ Keymaps
 - <space> ff: open file
 - <space> fg: find in files
 - <space> fb: find buffer
+- <space> fp: find projects
 - C-v: in telescope open file in vertical split
 - C-x: in telescope open file in horizontal split
 
@@ -29,6 +30,8 @@ Keymaps
 - `:LspInstall` to install Lsp server 
 
 - `<space>gg`: open neogit
+
+- Configured flit (leap has no keybinding) with `t`/`T`/`f`/`F` + next_char you can go to anyplace in the document. For first match use `<space>`
 
 LSP Keymaps
 ===========

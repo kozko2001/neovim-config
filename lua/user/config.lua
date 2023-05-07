@@ -38,3 +38,4 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.foldenable = true
+vim.opt.showtabline = 0 -- hide tabbar
