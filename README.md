@@ -33,6 +33,19 @@ Keymaps
 
 - Configured flit (leap has no keybinding) with `t`/`T`/`f`/`F` + next_char you can go to anyplace in the document. For first match use `<space>`
 
+TreeSitter text objects
+=======================
+Use treesitter to make selection and movement on the code
+
+in `v` or `V` mode 
+- `af`: select outter function (around function)
+- `if`: select inner function (inside function)
+
+in `n` mode - to move arround
+- `]m`/`[m` - start of next function/method
+- `]s` / `[s` - start of next scope
+- 
+
 LSP Keymaps
 ===========
 

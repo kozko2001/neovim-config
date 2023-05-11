@@ -39,3 +39,6 @@ vim.opt.foldlevelstart = 99
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.foldenable = true
 vim.opt.showtabline = 0 -- hide tabbar
+vim.opt.laststatus = 3
+
+vim.opt.completeopt = "menuone,preview"
