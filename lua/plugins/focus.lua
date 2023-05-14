@@ -1,6 +1,6 @@
 return {
 	"beauwilliams/focus.nvim",
-	enabled = true,
+	enabled = false,
 	config = function()
 		require("focus").setup()
 	end,

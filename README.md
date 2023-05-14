@@ -33,6 +33,8 @@ Keymaps
 
 - Configured flit (leap has no keybinding) with `t`/`T`/`f`/`F` + next_char you can go to anyplace in the document. For first match use `<space>`
 
+- In insert mode press `Contrl+i` to insert icon
+
 TreeSitter text objects
 =======================
 Use treesitter to make selection and movement on the code
