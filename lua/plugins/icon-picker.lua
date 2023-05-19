@@ -4,7 +4,7 @@ return {
     { "stevearc/dressing.nvim"}
   },
   keys = {
-    { "<C-i>",  "<Cmd>IconPickerInsert<CR>",desc = "Decrement selection",  mode = "i" },
+    { "<C-e>",  "<Cmd>IconPickerInsert<CR>",desc = "Decrement selection",  mode = "i" },
   },
   config = function ()
     require("icon-picker").setup({

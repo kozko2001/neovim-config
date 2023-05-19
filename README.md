@@ -33,7 +33,12 @@ Keymaps
 
 - Configured flit (leap has no keybinding) with `t`/`T`/`f`/`F` + next_char you can go to anyplace in the document. For first match use `<space>`
 
-- In insert mode press `Contrl+i` to insert icon
+- In insert mode press `Contrl+e` to insert icon/emoji
+
+- Using oil, in normal mode pressing `-` will bring a buffer that ressembles a netrw
+  - you can delete / create files by adding text and `:wq`
+  - `-` to go to the parent
+  - by cutting and yanking you can move files between folders
 
 TreeSitter text objects
 =======================
