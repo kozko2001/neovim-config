@@ -42,3 +42,5 @@ vim.opt.showtabline = 0 -- hide tabbar
 vim.opt.laststatus = 3
 
 vim.opt.completeopt = "menuone,preview"
+
+vim.g.maplocalleader = ","

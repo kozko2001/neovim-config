@@ -34,6 +34,8 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "rust",
+        "clojure"
       },
       incremental_selection = {
         enable = true,
